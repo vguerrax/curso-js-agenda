@@ -1,0 +1,66 @@
+<%- include('includes/head'); %>
+  <%- include('includes/nav'); %>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 my-3">
+          <h1 class="text-center">Agenda
+            <% if (user) { %>
+              de <%= user.name %>
+                <% } %>
+          </h1>
+          <%- include('includes/messages') %>
+          <% if (user) { %>
+            <% if (contatos.length> 0) { %>
+              <p class="text-center lead">Seus contatos estão abaixo.</p>
+
+              <div class="respnsive-table my-3">
+                <table class="table table-hover">
+                  <thead class="table-dark">
+                    <tr>
+                      <td scope="col">Nome</td>
+                      <td scope="col">Sobrenome</td>
+                      <td scope="col">Telefone</td>
+                      <td scope="col">Email</td>
+                      <td class="text-center">Ações</td>
+                    </tr>
+                  </thead>
+                  <tbody class="table-primary">
+                    <% contatos.forEach(contato=> { %>
+                      <tr>
+                        <td scope="row">
+                          <%= contato.name %>
+                        </td>
+                        <td>
+                          <%= contato.lastName %>
+                        </td>
+                        <td>
+                          <%= contato.phone %>
+                        </td>
+                        <td>
+                          <%= contato.email %>
+                        </td>
+                        <td class="text-center">
+                          <a href="/contato/index/<%= contato._id %>" class="link-primary" title="Editar"><i
+                              class="bi-pencil-fill" style="font-size: 1.2em; margin: 5px;"></i></a>
+                          <a href="/contato/delete/<%= contato._id %>" class="link-danger" title="Excluir"><i
+                              class="bi-trash-fill" style="font-size: 1.2em; margin: 5px;"></i></a>
+                        </td>
+                      </tr>
+                      <% }) %>
+                  </tbody>
+                </table>
+              </div>
+            <% } else { %>
+              <p class="text-center lead">Nenhum contato cadastrado.</p>
+            <% } %> 
+          <% } else { %>
+            <p class="text-center lead">Entre para ver sua agenda.</p>
+          <% } %>
+        </div>
+        <div class="col-lg-2"></div>
+      </div>
+    </div>
+
+    <%- include('includes/footer'); %>

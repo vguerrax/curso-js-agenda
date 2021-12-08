@@ -1,0 +1,72 @@
+<%- include('includes/head'); %>
+<%- include('includes/nav'); %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8 my-3">
+      <h1 class="text-center">Criar Conta ou Entrar</h1>
+      <p class="text-center lead">Faça login ou crie dua conta abaixo.</p>
+
+      <%- include('includes/messages') %>
+
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg border my-5" style="padding: 10px;">
+            <h4 class="text-center">Criar Conta</h4>
+
+            <form action="/login/register" method="POST" class="cadastroUsuarioForm">
+              <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+
+              <div class="mb-3">
+                <label for="nomeCadastro" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="nomeCadastro" name="name">
+              </div>
+
+              <div class="mb-3">
+                <label for="emailCadastro" class="form-label">Email</label>
+                <input type="email" class="form-control" id="emailCadastro" name="email">
+              </div>
+
+              <div class="mb-3">
+                <label for="senhaCadastro" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="senhaCadastro" name="password">
+              </div>
+
+              <div class="mb-3">
+                <label for="confirmaSenhaCadastro" class="form-label">Confirme a senha</label>
+                <input type="password" class="form-control" id="confirmaSenhaCadastro" name="confirmPassword">
+              </div>
+              <button type="submit" class="btn btn-primary">Criar Conta</button>
+            </form>
+          </div>
+
+          <div class="col-lg border  my-5" style="padding: 10px;">
+            <h4 class="text-center">Entrar</h4>
+
+            <form action="/login/login" method="POST" class="loginForm">
+              <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+
+              <div class="mb-3">
+                <label for="emailLogin" class="form-label">Email</label>
+                <input type="email" class="form-control" id="emailLogin" name="email">
+              </div>
+
+              <div class="mb-3">
+                <label for="senhaLogin" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="senhaLogin" name="password">
+              </div>
+              <button type="submit" class="btn btn-primary">Entrar</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+</div>
+
+  <%- include('includes/footer'); %>
